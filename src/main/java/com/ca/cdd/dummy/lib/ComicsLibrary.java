@@ -6,7 +6,7 @@ public class ComicsLibrary extends Library {
     @Override
     public String getName() {
         return NAME;
-    } 
+    }  
 } 
 
 // v7u1a
