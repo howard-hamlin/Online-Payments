@@ -1,4 +1,4 @@
-# cdd-dummy-app
+# NatWest-Online-Payments
 
 An application to be used for testing other apps.  
 Initially used to test tar-agent.  
@@ -30,4 +30,5 @@ Initially used to test tar-agent.
 
 **5.** on the browser (e.g. chrome) type. 
     http://[DOCKER ENGINE HOST NAME]:8090/dummy-app
+
 
