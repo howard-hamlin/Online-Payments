@@ -1,10 +1,10 @@
 library 'cdd-global-pipeline-libraries'
 
 properties([
- parameters([booleanParam(defaultValue: false, description: 'CREATE_RELEASE_ON_CDD', name: 'CREATE_RELEASE_ON_CDD'),
- string(defaultValue: 'plugins', description: '', name: 'GIRO_NAME_KEY', trim: true)])
+ parameters([
+ string(defaultValue: 'http://ibndev003773.bpc.broadcom.net:8080', description: '', name: 'CDD_SERVER_URL', trim: true)])
  ])
-
+params.each { k, v -> env[k] = v }
 pipeline {
  agent {
   label 'master'
