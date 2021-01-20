@@ -5,7 +5,7 @@ def call(Map config) {
   if(config){
 	projectName = config.projectName
 	scope = config.scope
-	env.CDD_BUSINESS_APPLICATION_NAME = config.businessApplicationName
+	env.CCDD_BUSINESS_APPLICATION_NAME = config.businessApplicationName
   }
   println "Optional Parameter [projectName=${projectName}]."
   println "Optional Parameter [scope=${scope}]."
