@@ -9,7 +9,7 @@ def call(Map config) {
   }
   println "Optional Parameter [projectName=${projectName}]."
   println "Optional Parameter [scope=${scope}]."
-  println "Optional Parameter [businessApplicationName=${CDD_BUSINESS_APPLICATION_NAME}]."
+  println "Optional Parameter [businessApplicationName=${env.CDD_BUSINESS_APPLICATION_NAME}]."
   environmentSetUp(projectName)
   sendNotificationToCDDirector(scope)	 
   processCDDReleases(evaluate("${currentBuild.description}"))
@@ -22,13 +22,13 @@ void environmentSetUp(projectName) {
  getTenantIdFromCredentials()
  getAPIKeyFromCredentials(projectName)
  setGitEnvironmentVariables()
- env.CDD_SERVER_NAME = "ibndev003773.bpc.broadcom.net"
- env.CDD_SERVER_PORT = "8080"
+ setCDDServerName()
+ env.CDD_SERVER_PORT = 0
  env.CDD_USE_SSL = false
  env.CDD_PROXY_SERVER_URL = ""
  env.CDD_PROXY_SERVER_USERNAME = ""
  env.CDD_PROXY_SERVER_PASSWORD = ""
- if(!("${CDD_BUSINESS_APPLICATION_NAME}") || 'null' == "${CDD_BUSINESS_APPLICATION_NAME}"){
+ if(!("${env.CDD_BUSINESS_APPLICATION_NAME}") || 'null' == "${env.CDD_BUSINESS_APPLICATION_NAME}"){
 	env.CDD_BUSINESS_APPLICATION_NAME = "${env.GIT_URL.replaceFirst(/^.*\/(.*)\/.*.git$/, '$1')}"
 	echo "Using Repository Owner: [${CDD_BUSINESS_APPLICATION_NAME}] as Business Application Name."
  }
@@ -36,6 +36,18 @@ void environmentSetUp(projectName) {
  env.CDD_APPLICATION_VERSION_NAME = "$env.BRANCH_NAME"
  env.CDD_GIT_COMMIT_ID = "$env.GIT_COMMIT"
  env.CDD_PREVIOUS_GIT_COMMIT_ID = "$env.GIT_PREVIOUS_SUCCESSFUL_COMMIT"
+}
+
+void setCDDServerName(){
+ if("${params.CDD_SERVER_URL}" && 'null' != "${params.CDD_SERVER_URL}"){
+   println "Using Project Build Parameter - CDD_SERVER_URL: [${params.CDD_SERVER_URL}]"
+   env.CDD_SERVER_NAME = "${params.CDD_SERVER_URL}"
+ }else if("${env.CDD_SERVER_URL}" && 'null' != "${env.CDD_SERVER_URL}"){
+   println "Using Global Environment Variable - CDD_SERVER_URL: [${env.CDD_SERVER_URL}]"
+   env.CDD_SERVER_NAME = "${env.CDD_SERVER_URL}"
+ }else{
+   env.CDD_SERVER_NAME = "ibndev003773.bpc.broadcom.net"
+ }
 }
 
 void getTenantIdFromCredentials() {
@@ -84,7 +96,16 @@ String getLastSuccessfulCommit() {
   lastSuccessfulHash = scmAction?.revision?.hash
   println "Previous Successful Build Revision: [${scmAction?.revision}], Hash: [$lastSuccessfulHash], Source Id: [${scmAction?.sourceId}]."
  }
- return lastSuccessfulHash
+ if(lastSuccessfulHash)
+	 return lastSuccessfulHash
+ return getFirstCommit()
+}
+
+String getFirstCommit() {
+ println "Previous Successful Commit is NULL. Fetching First Commit..."
+ String firstCommit = sh(returnStdout: true, script: "git rev-list $env.GIT_COMMIT | tail -1").trim()
+ println "Using First Commit found as Previous Successful Commit: [$firstCommit]"
+ return firstCommit
 }
 
 void sendNotificationToCDDirector(scope) {
@@ -111,9 +132,9 @@ void sendNotificationToCDDirector(scope) {
   onlyIntelligentTestSuites: false,
   commitSource: '', 
   scope: "${scope}",
-  fileSourceName:'',
+  fileSourceName:"",
   fileSourceParameters:'{"branch":"${CDD_APPLICATION_VERSION_NAME}"}',
-  dslFilename:'',
+  dslFilename:"",
   dslParameters:'{"BUSINESS_APPLICATION_NAME": "${CDD_BUSINESS_APPLICATION_NAME}", "BUSINESS_APPLICATION_VERSION_NAME": "${CDD_APPLICATION_VERSION_NAME}", "APPLICATION_NAME":"${CDD_APPLICATION_NAME}","APPLICATION_VERSION_NAME":"${CDD_APPLICATION_VERSION_NAME}"}'
  echo '----------Jenkins Pipeline completed successfully--------------'
 }
