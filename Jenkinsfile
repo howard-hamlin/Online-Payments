@@ -4,7 +4,7 @@ properties([
 ])
 
 properties([
- pipelineTriggers([githubPush()])
+ pipelineTriggers([githubPush()]),
  
  parameters([
  string(defaultValue: 'http://ibndev003773.bpc.broadcom.net:8080', description: '', name: 'CDD_SERVER_URL', trim: true),
