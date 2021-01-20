@@ -5,11 +5,11 @@ def call(Map config) {
   if(config){
 	projectName = config.projectName
 	scope = config.scope
-	env.CCDD_BUSINESS_APPLICATION_NAME = config.businessApplicationName
+	env.CDD_BUSINESS_APPLICATION_NAME = config.businessApplicationName
   }
   println "Optional Parameter [projectName=${projectName}]."
   println "Optional Parameter [scope=${scope}]."
-  println "Optional Parameter [businessApplicationName=${CCDD_BUSINESS_APPLICATION_NAME}]."
+  println "Optional Parameter [businessApplicationName=${CDD_BUSINESS_APPLICATION_NAME}]."
   environmentSetUp(projectName)
   sendNotificationToCDDirector(scope)	 
   processCDDReleases(evaluate("${currentBuild.description}"))
