@@ -133,6 +133,12 @@
 		{
 			"phase": "NatWest Biometric Payment/master/DEV",
 			"isDisabled": false,
+			"applicationVersionBuilds": [
+				{
+					"buildNumber": "%NatWest-Online-Payment.last_successful_change%",
+					"applicationVersion": "Local|NatWest-Online-Payments/master"
+				}
+			],
 			"isOnFailurePhaseEnabled": true,
 			"isSkipTaskOnFailure": false,
 			"previousTasks": [
