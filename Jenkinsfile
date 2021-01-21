@@ -14,6 +14,7 @@ pipeline {
   stage('Checkout') {
    steps {
     echo "***Build***"
+    sh "./gradlew clean build"
    }
   }
   
