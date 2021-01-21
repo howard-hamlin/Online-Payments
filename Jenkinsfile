@@ -21,25 +21,10 @@ pipeline {
 stage('NexusArtifactUploaderJob') {
     steps {
       script {
-      nexusArtifactUploader(
-        nexusVersion: 'nexus2',
-        protocol: 'http',
-        nexusUrl: 'ibndev003773.bpc.broadcom.net:8080/nexus',
-        groupId: 'dummy',
-        version: '1.0',
-        repository: 'NatWest-Online-Payments',
-        credentialsId: 'Nexus_admin',
-        artifact [
-            [artifactId: 'dummy',
-            type: 'war',
-            classifier: '',
-            file: 'build/libs/dummy.war']
-          ]
-        );
+nexusArtifactUploader artifacts: [[artifactId: 'dummy', classifier: '', file: 'build/libs/dummy.war', type: 'war']], credentialsId: 'nexus', groupId: 'dummy', nexusUrl: 'ibndev003773.bpc.broadcom.net:8080/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'NatWest-Online-Payments', version: '1.0'
       }
     }
   }
-
   
  }
  post {
