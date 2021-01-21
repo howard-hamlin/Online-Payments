@@ -28,7 +28,7 @@ stage('NexusArtifactUploaderJob') {
         groupId: 'dummy',
         version: '1.0',
         repository: 'NatWest-Online-Payments',
-        credentialsId: 'Nexus_admin',
+        
         artifact [
             [artifactId: 'dummy',
             type: 'war',
