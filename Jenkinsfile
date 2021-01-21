@@ -17,7 +17,7 @@ pipeline {
    }
   }
   
-  freeStyleJob('NexusArtifactUploaderJob') {
+  stage('NexusArtifactUploaderJob') {
     steps {
       nexusArtifactUploader {
         nexusVersion('nexus2')
