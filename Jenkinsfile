@@ -17,26 +17,27 @@ pipeline {
    }
   }
   
-  stage('NexusArtifactUploaderJob') {
+stage('NexusArtifactUploaderJob') {
     steps {
-      nexusArtifactUploader {
-        nexusVersion('nexus2')
-        protocol('http')
-        nexusUrl('ibndev003773.bpc.broadcom.net:8080/nexus')
-        groupId('dummy')
-        version('1.0')
-        repository('NatWest-Online-Payments')
-        credentialsId('44620c50-1589-4617-a677-7563985e46e1')
-        artifact {
-            artifactId('dummy')
-            type('war')
-            classifier('')
-            file('build/libs/dummy.war')
-        }
+      script {
+      nexusArtifactUploader(
+        nexusVersion: 'nexus2'
+        protocol: 'http'
+        nexusUrl: 'ibndev003773.bpc.broadcom.net:8080/nexus'
+        groupId: 'dummy'
+        version: '1.0'
+        repository: 'NatWest-Online-Payments'
+        credentialsId: '44620c50-1589-4617-a677-7563985e46e1'
+        artifact [
+            [artifactId: 'dummy',
+            type: 'war',
+            classifier: '',
+            file: 'build/libs/dummy.war']
+          ]
+        );
       }
     }
-}
-
+  }
 
   
  }
