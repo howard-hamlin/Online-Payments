@@ -17,7 +17,7 @@ pipeline {
     sh "./gradlew clean build"
    }
   }
-  
+   
 stage('NexusArtifactUploaderJob') {
     steps {
       script {
