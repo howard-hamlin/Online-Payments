@@ -135,7 +135,7 @@
 			"isDisabled": false,
 			"applicationVersionBuilds": [
 				{
-					"buildNumber": "%NatWest-Online-Payment.last_successful_change%",
+					"buildNumber": "%NatWest-Online-Payments.last_successful_change%",
 					"applicationVersion": "Local|NatWest-Online-Payments/master"
 				}
 			],
