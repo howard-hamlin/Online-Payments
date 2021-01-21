@@ -141,9 +141,6 @@
 			],
 			"isOnFailurePhaseEnabled": true,
 			"isSkipTaskOnFailure": false,
-			"previousTasks": [
-				"Deploy NatWest Biometric Payment"
-			],
 			"name": "Deploy NatWest Online Payments",
 			"kind": "Task",
 			"plugin": "Tomcat/1.0",
