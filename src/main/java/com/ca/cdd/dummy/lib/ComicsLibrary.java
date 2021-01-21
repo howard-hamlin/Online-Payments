@@ -8,5 +8,3 @@ public class ComicsLibrary extends Library {
         return NAME;
     }  
 }    
-
-// v7u1a
