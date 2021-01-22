@@ -4,7 +4,7 @@ public class ComicsLibrary extends Library {
     
     private static String NAME = "Comics";
     @Override
-    public String getName() {
+    public String getName() { 
         return NAME;
     }   
 }    
