@@ -17,4 +17,4 @@ public class UseParamFromFatherClass extends Library {
         return NAME;
     }
 }      
- 
+  
