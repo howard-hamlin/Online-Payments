@@ -15,6 +15,6 @@ public class UseParamFromFatherClass extends Library {
     @Override
     public String getName() {
         return NAME;
-    }
+    } 
 }      
   
