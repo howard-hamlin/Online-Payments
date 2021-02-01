@@ -21,7 +21,7 @@ pipeline {
 stage('NexusArtifactUploaderJob') {
     steps {
       script {
-nexusArtifactUploader artifacts: [[artifactId: 'dummy', classifier: '', file: 'build/libs/dummy.war', type: 'war']], credentialsId: 'Nexus_admin', groupId: 'dummy', nexusUrl: 'ibndev003773.bpc.broadcom.net:8080/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'NatWest-Online-Payments', version: '1.0'
+nexusArtifactUploader artifacts: [[artifactId: 'dummy', classifier: '', file: 'build/libs/dummy.war', type: 'war']], credentialsId: 'Nexus_admin', groupId: 'dummy', nexusUrl: 'ibndev003773.bpc.broadcom.net:8080/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'Online-Payments', version: '1.0'
       }
     }
   }
@@ -29,7 +29,7 @@ nexusArtifactUploader artifacts: [[artifactId: 'dummy', classifier: '', file: 'b
  }
  post {
   success {
-    sendNotificationToCDDCall projectName: 'NatWest', scope: 'BUSINESS_APPLICATION', businessApplicationName: 'NatWest Biometric Payment'
+    sendNotificationToCDDCall projectName: 'Demo', scope: 'BUSINESS_APPLICATION', businessApplicationName: 'Biometric Payment'
   }
  }
 }
