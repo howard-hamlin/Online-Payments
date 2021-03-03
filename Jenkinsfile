@@ -29,7 +29,7 @@ nexusArtifactUploader artifacts: [[artifactId: 'dummy', classifier: '', file: 'b
  }
  post {
   success {
-    sendNotificationToCDDCall projectName: 'Demo', scope: 'BUSINESS_APPLICATION', businessApplicationName: 'Biometric Payment', fileSourceBranchName: 'Master'
+    sendNotificationToCDDCall projectName: 'Demo', scope: 'BUSINESS_APPLICATION', businessApplicationName: 'Biometric Payment', fileSourceBranchName: 'master'
   }
  }
 }
