@@ -22,7 +22,7 @@ Initially used to test tar-agent.
    cdd.continuous_testing_agent.packages.exclude=com.ca.cdd.ws,com.ca.cdd.controllers,com.ca.cdd.dao  
    cdd.continuous_testing_agent.packages.include=com.ca.cdd  
   
-**3.** run command -  
+**3.** run command -   
   docker login -u bldcddbuild.co -p C@passw0rd1 docker-release-candidate-local.artifactory-lvn.broadcom.net
   
 **4.** run command -  
