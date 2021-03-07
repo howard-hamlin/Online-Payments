@@ -29,6 +29,6 @@ Initially used to test tar-agent.
   docker run  -d -p 8090:8080 -v /home/cdd/.cdd/conf:/home/cdd/.cdd/conf docker-release-candidate-local.artifactory-lvn.broadcom.net/com/ca/cdd/dummy-app:[BUILD NUMBER - YOU MAY USE LATEST]
 
 **5.** on the browser (e.g. chrome) type. 
-    http://[DOCKER ENGINE HOST NAME]:8090/dummy-app  
+    http://[DOCKER ENGINE HOST NAME]:8090/dummy-app   
 
 
