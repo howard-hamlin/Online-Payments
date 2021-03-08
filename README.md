@@ -7,7 +7,6 @@ Initially used to test tar-agent.
 **1.**  make sure docker is installed on host. you may type the command below and get a list of running containers.  
   docker ps
   
-  
 **2.** create settings.properties file under /home/cdd/.cdd, with properties below:  
    cdd.continuous_testing_agent.cdd.url=[CDD URL] e.g. http://lvnapi024198.bpc.broadcom.net:8080/cdd    
    cdd.continuous_testing_agent.cdd.api_key=[USER API KEY]  
